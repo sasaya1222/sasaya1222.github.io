@@ -271,4 +271,9 @@ body {
 }
 
 /* 響應式設計 */
-@media (max-width: 768
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
