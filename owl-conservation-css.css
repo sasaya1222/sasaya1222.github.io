@@ -1,0 +1,165 @@
+:root {
+    --primary-color: #FFB5BA;    /* 主要粉色 */
+    --secondary-color: #B5D8FF;  /* 淺藍色 */
+    --background-color: #FFF9F9; /* 背景米色 */
+    --text-color: #4A4A4A;
+    --shadow: 0 2px 4px rgba(0,0,0,0.1);
+    --border-radius: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft JhengHei", sans-serif;
+    line-height: 1.6;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* 頁首樣式 */
+.header {
+    background-color: var(--primary-color);
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.header-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* 導航欄樣式 */
+.nav {
+    background-color: white;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+}
+
+.nav a:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* 區塊樣式 */
+.section {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+/* 卡片樣式 */
+.card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.card h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.card ul {
+    list-style-position: inside;
+    margin: 1rem 0;
+}
+
+.card li {
+    margin-bottom: 0.5rem;
+}
+
+/* 影片容器樣式 */
+.video-container {
+    margin: 2rem 0;
+}
+
+.video-placeholder {
+    background: var(--secondary-color);
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius);
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* 按鈕樣式 */
+.button-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* 頁尾樣式 */
+.footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .section {
+        padding: 2rem 1rem;
+    }
+    
+    .header-content h1 {
+        font-size: 2rem;
+    }
+}
