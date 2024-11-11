@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>守護億隻鴞 - 生態復育計畫</title>
+    <style>
+        :root {
+            --primary-color: #8B7355;     /* 深棕色 */
+            --secondary-color: #C4B6B6;   /* 柔和的灰褐色 */
+            --accent-color: #8E9775;      /* 淡雅的橄欖綠 */
+            --background-color: #F5F5F5;  /* 淺灰色背景 */
+            --text-color: #4A4A4A;        /* 深灰文字 */
+            --light-accent: #E6D5B8;      /* 淺褐色強調 */
+            --card-bg: #FFFFFF;           /* 卡片背景色 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 導航欄 */
+        .main-nav {
+            background-color: var(--primary-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo h1 {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--light-accent);
+        }
+
+        /* 首頁英雄區塊 */
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                        url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .cta-buttons a {
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .cta-secondary {
+            border: 2px solid white;
+            color: white;
+        }
+
+        /* 貓頭鷹介紹區塊 */
+        .about-section {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+        }
+
+        .owl-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .owl-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .owl-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .owl-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .owl-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .owl-content {
+            padding: 1.5rem;
+        }
+
+        .owl-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* 影音區塊 */
+        .media-section {
+            padding: 5rem 0;
+            background-color: var(--background-color);
+            position: relative;
+        }
+
+        .video-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background-color: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-description {
+            margin-top: 2rem;
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* 募資區塊 */
+        .donation-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .donation-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .donation-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .donation-progress {
+            margin: 2rem 0;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: var(--accent-color);
+            width: 65%;
+            transition: width 1s ease;
+        }
+
+        .donation-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .donation-option {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .donation-option:hover {
+            transform: translateY(-5px);
+        }
+
+        .donate-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--light-accent);
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+
+            .owl-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>守護億隻鴞</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">首頁</a></li>
+                <li><a href="#about">認識貓頭鷹</a></li>
+                <li><a href="#media">影音專區</a></li>
+                <li><a href="#events">活動公告</a></li>
+                <li><a href="#donation">募資活動</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <h2>守護台灣原生貓頭鷹</h2>
+            <p>發現牠們的獨特美麗，守護牠們的生存空間</p>
+            <div class="cta-buttons">
+                <a href="#donation" class="cta-primary">立即支持</a>
+                <a href="#about" class="cta-secondary">認識貓頭鷹</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">認識台灣的貓頭鷹家族</h2>
+            <div class="owl-grid">
+                <div class="owl-card">
+                    <div class="owl-image">
+                        <img src="/api/placeholder/400/300" alt="領角鴞">
+                    </div>
+                    <div class="owl-content">
+                        <h3>都市叢林裡的新住民：領角鴞</h3>
+                        <p>全身大致呈灰褐色的領角鴞是台灣地區分布最廣泛的貓頭鷹之一。牠們具有強大的適應力，不挑食的特性使其在都市環境中也能存活。在白沙校園，從106年到109年連續四年都能發現牠們的身影。</p>
+                    </div>
+                </div>
+
+                <div class="owl-card">
+                    <div class="owl-image">
+                        <img src="/api/placeholder/400/300" alt="黃嘴角鴞">
+                    </div>
+                    <div class="owl-content">
+                        <h3>「聲鳴」遠播的貓頭鷹：黃嘴角鴞</h3>
+                        <p>黃嘴角鴞全身大致呈黃褐色，腹面的顏色較淡，雜有黑褐色斑紋。最特別的是牠們擁有黃色的虹膜和嘴喙，因此得名。</p>
+                    </div>
+                </div>
+
+                <div class="owl-card">
+                    <div class="owl-image">
+                        <img src="/api/placeholder/400/300" alt="褐鷹鴞">
+                    </div>
+                    <div class="owl-content">
+                        <h3>身手矯健的貓頭鷹：褐鷹鴞</h3>
+                        <p>褐鷹鴞廣泛分布於亞洲，頭部至背面呈黑褐色，腹面為白色夾雜黑褐色縱斑。春夏在山區繁殖，秋冬則到平原過冬。</p>
+                    </div>
+                </div>
+
+                <div class="owl-card">
+                    <div class="owl-image">
+                        <img src="/api/placeholder/400/300" alt="鵂鶹">
+                    </div>
+                    <div class="owl-content">
+                        <h3>山林小辣椒：鵂鶹</h3>
+                        <p>體型僅有一個拳頭大小的鵂鶹是台灣最小的貓頭鷹。別被牠可愛的外表迷惑，牠可是兇悍無比的狠角色！</p>
+                    </div>
+                </div>
+
+                <div class="owl-card">
+                    <div class="owl-image">
+                        <img src="/api/placeholder/400/300" alt="東方角鴞">
+                    </div>
+                    <div class="owl-content">
+                        <h3>東方角鴞</h3>
+                        <p>東方角鴞體型與黃嘴角鴞相仿，擁有獨特的兩種色型：灰色型及紅褐色型。在台灣，以紅褐色型較為常見。</p>
+                    </div>
+                </div>
+
+                <div class="owl-card">
+                    <div class="owl-image">
+                        <img src="/api/placeholder/400/300" alt="東方草鴞">
+                    </div>
+                    <div class="owl-content">
+                        <h3>黑夜潛行的神秘客：東方草鴞</h3>
+                        <p>東
